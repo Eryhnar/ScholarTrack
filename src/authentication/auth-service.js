@@ -1,8 +1,11 @@
+import jwt from "jsonwebtoken";
+import UnauthorizedError from "../utils/errors/UnauthorizedError.js";
 import InvalidInputError from "../utils/errors/invalidInputError.js";
 import hashPassword from "../utils/treatment-utils.js/hashPassword.js";
 import isValidEmail from "../utils/validators/isValidEmail.js";
 import isValidPassword from "../utils/validators/isValidPassword.js";
-import { registerUser } from "./auth-repository.js";
+import { getUserToLogin, registerUser } from "./auth-repository.js";
+import comparePassword from "../utils/treatment-utils.js/comparePassword.js";
 
 export const registerService = async (data) => {
     try {
@@ -29,4 +32,43 @@ export const registerService = async (data) => {
         throw error;
     }
 }
-    
+
+export const loginService = async (data) => {
+    try {
+        const { email, password } = data;
+
+        if (!email || !password) {
+            throw new InvalidInputError(400, "All fields are required");
+        }
+
+        const user = await getUserToLogin(email);
+        if (!user) {
+            throw new UnauthorizedError(401, "Invalid email or password");
+        }
+
+        if (!await comparePassword(password, user.password)) {
+            throw new UnauthorizedError(401, "Invalid email or password");
+        }
+
+        const token = jwt.sign(
+            {
+                userId: user._id,
+                role: user.role,
+            },
+            process.env.JWT_SECRET,
+            {
+                // expiresIn: "5h",
+            }
+        );
+
+        const userName = user.name;
+
+        return {
+            token,
+            userName
+        };
+
+    } catch (error) {
+        throw error;
+    }
+}
