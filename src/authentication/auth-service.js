@@ -1,3 +1,4 @@
+import { registerUser } from "./auth-repository.js";
 
 export const registerService = async (data) => {
     try {
