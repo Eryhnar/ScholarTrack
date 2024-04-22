@@ -9,16 +9,19 @@ const userSchema = new Schema(
         email: {
             type: String,
             required: true,
+            unique: true,
         },
         password: {
             type: String,
             required: true,
+            select: false,
         },
         role: {
             type: String,
             enum: ["user", "admin", "superadmin"],
             required: true,
             default: "user",
+            select: false,
         },
     },
     {

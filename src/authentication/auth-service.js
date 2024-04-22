@@ -1,3 +1,4 @@
+import InvalidInputError from "../utils/errors/invalidInputError.js";
 import hashPassword from "../utils/treatment-utils.js/hashPassword.js";
 import isValidEmail from "../utils/validators/isValidEmail.js";
 import isValidPassword from "../utils/validators/isValidPassword.js";
@@ -13,11 +14,11 @@ export const registerService = async (data) => {
 
         //TODO verifications
         if (!isValidEmail(email)) {
-            throw new Error('Invalid email');
+            throw new InvalidInputError(400, "Invalid email");
         }
 
         if (!isValidPassword(password)) {
-            throw new Error('Invalid password');
+            throw new InvalidInputError(400, "Password must be between 8 and 16 characters, contain at least one lowercase letter, one uppercase letter and one number");
         }
 
         //TODO hash password

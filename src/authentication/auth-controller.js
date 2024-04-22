@@ -1,8 +1,8 @@
 import { registerService } from "./auth-service.js";
 
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
     try {
-        registerService(req.body);
+        await registerService(req.body);
         res.status(201).json(
             {
                 success: true,
