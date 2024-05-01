@@ -12,15 +12,19 @@ export const updateUserProfileService = async (req, res) => {
         const { name, email } = req.body;
         const updatedFields = {};
 
-        if (name && !isValidName(name)) {
-            throw new InvalidInputError(400, "Invalid name");
+        if (name) {
+            if (!isValidName(name)) {
+                throw new InvalidInputError(400, "Name must be between 3 and 50 characters and contain only letters and spaces");
+            }
+            updatedFields.name = name;
         }
-        updatedFields.name = name;
 
-        if (email && !isValidEmail(email)) {
-            throw new InvalidInputError(400, "Invalid email");
+        if (email) {
+            if (!isValidEmail(email)) {
+                throw new InvalidInputError(400, "Invalid email");
+            }
+            updatedFields.email = email;
         }
-        updatedFields.email = email;
         const updatedUser = await updateUserByIdRepository(userId, updatedFields);
         return updatedUser;
 
