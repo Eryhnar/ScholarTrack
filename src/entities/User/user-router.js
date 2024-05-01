@@ -5,6 +5,6 @@ import auth from "../../middlewares/auth.js";
 
 const router = Router();
 
-router.put("/settings", auth, updateUserProfile, errorHandler);
+router.put("/profile", auth, updateUserProfile, errorHandler);
 
 export default router;
