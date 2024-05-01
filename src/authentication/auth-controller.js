@@ -16,7 +16,7 @@ export const register = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
     try {
-        const {token, userName} = await loginService(req.body);
+        const {token, user} = await loginService(req.body);
         res.status(200).json(
             {
                 success: true,
@@ -24,7 +24,9 @@ export const login = async (req, res, next) => {
                 data: {
                     token: token,
                     user: {
-                        name: userName,
+                        id: user._id,
+                        name: user.name,
+                        role: user.role
                     }
                 }
             }

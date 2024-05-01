@@ -1,5 +1,6 @@
 import InvalidInputError from "../../utils/errors/invalidInputError.js";
 import isValidEmail from "../../utils/validators/isValidEmail.js";
+import isValidName from "../../utils/validators/isValidName.js";
 import { updateUserByIdRepository } from "./user-repository.js";
 
 export const updateUserProfileService = async (req, res) => {

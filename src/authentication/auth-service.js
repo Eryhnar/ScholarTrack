@@ -6,6 +6,7 @@ import isValidEmail from "../utils/validators/isValidEmail.js";
 import isValidPassword from "../utils/validators/isValidPassword.js";
 import { getUserToLogin, registerUser } from "./auth-repository.js";
 import comparePassword from "../utils/treatment-utils.js/comparePassword.js";
+import isValidName from "../utils/validators/isValidName.js";
 
 export const registerService = async (data) => {
     try {
@@ -13,6 +14,9 @@ export const registerService = async (data) => {
 
         if (!name || !email || !password) {
             throw new Error('Missing required fields');
+        }
+        if (!isValidName(name)) {
+            throw new InvalidInputError(400, "Name must be between 3 and 50 characters and contain only letters and spaces");
         }
 
         //TODO verifications
@@ -63,11 +67,12 @@ export const loginService = async (data) => {
             }
         );
 
-        const userName = user.name;
+        // const userName = user.name;
+        
 
         return {
             token,
-            userName
+            user
         };
 
     } catch (error) {

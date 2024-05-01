@@ -1,8 +1,8 @@
 import { updateUserProfileService } from "./user-service.js";
 
-export const updateUserProfile = async (req, res) => {
+export const updateUserProfile = async (req, res, next) => {
     try {
-        const updatedUser = await updateUserProfileService(req.user._id, req.body);
+        const updatedUser = await updateUserProfileService(req);
         res.status(200).json(
             {
                 success: true,

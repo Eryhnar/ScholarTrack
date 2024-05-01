@@ -21,5 +21,3 @@ export const updateUserByIdRepository = async (id, updatedFields) => {
         throw error;
     }
 }
-
-updateUserByIdRepository("662fb0f53c3b53b205a436dd", {name: "Dani"})

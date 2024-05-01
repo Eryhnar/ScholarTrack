@@ -2,10 +2,9 @@ import jwt from "jsonwebtoken";
 import  User  from "../entities/User/user-model.js";
 import UnauthorizedError from "../utils/errors/UnauthorizedError.js";
 
-export const auth = async (req, next) => {
+const auth = async (req, res, next) => {
     try {
         const token = req.headers.authorization?.split(" ")[1];
-
 
         if (!token) {
             throw new UnauthorizedError(401, "Unauthorized");
@@ -34,3 +33,5 @@ export const auth = async (req, next) => {
         next(error);
     }
 }
+
+export default auth;
