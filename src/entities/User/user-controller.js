@@ -1,4 +1,4 @@
-import { changePasswordService, updateUserProfileService } from "./user-service.js";
+import { changePasswordService, suspendUserService, updateUserProfileService } from "./user-service.js";
 
 export const updateUserProfile = async (req, res, next) => {
     try {
@@ -23,6 +23,20 @@ export const changePassword = async (req, res, next) => {
             {
                 success: true,
                 message: "Password changed successfully",
+            }
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const suspendUser = async (req, res, next) => {
+    try {
+        await suspendUserService(req);
+        res.status(200).json(
+            {
+                success: true,
+                message: "User suspended successfully",
             }
         );
     } catch (error) {

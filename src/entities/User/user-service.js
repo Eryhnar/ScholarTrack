@@ -62,3 +62,13 @@ export const changePasswordService = async (req, res) => {
         throw error;
     }
 }
+
+export const suspendUserService = async (req, res) => {
+    try {
+        const userId = req.tokenData.userId;
+
+        await updateUserByIdRepository(userId, { isActive: false });
+    } catch (error) {
+        throw error;
+    }
+}
