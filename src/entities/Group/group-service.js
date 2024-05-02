@@ -1,10 +1,20 @@
+import InvalidInputError from "../../utils/errors/invalidInputError.js";
 import { createGroupRepository } from "./group-repository.js";
+import { getUserByIdRepository } from "../User/user-repository.js";
 
-export const createGroupService = async (groupData) => {
+export const createGroupService = async (authorId, groupData) => {
     try {
-        //check
+        const { name, level } = groupData;
+        if (!name || !level) {
+            throw new InvalidInputError("Group name and level are required");
+        }
 
-        const group = await createGroupRepository(groupData);
+        const author = getUserByIdRepository(authorId);
+        if (!author) {
+            throw new InvalidInputError("Something went wrong, please try again later");
+        }
+
+        const group = await createGroupRepository(authorId, name, level);
         return group;
     } catch (error) {
         throw error;

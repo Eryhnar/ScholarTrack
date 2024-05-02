@@ -6,3 +6,5 @@ import auth from "../../middlewares/auth.js";
 const router = Router();
 
 router.post("/", auth, createGroup, errorHandler);
+
+export default router;
