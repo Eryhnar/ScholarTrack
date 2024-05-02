@@ -26,3 +26,24 @@ export const getGroupsByUserIdRepository = async (userId) => {
         throw error;
     }
 }
+
+export const editGroupByIdRepository = async (userId, groupId, groupData) => {
+    try {
+        const editedGroup = await Group.findOneAndUpdate(
+            {
+                _id: groupId,
+                $or: [
+                    { author: userId },
+                    { collaborators: userId }
+                ]
+            },
+            groupData,
+            {
+                new: true
+            }
+        );
+        return editedGroup;
+    } catch (error) {
+        throw error;
+    }
+}

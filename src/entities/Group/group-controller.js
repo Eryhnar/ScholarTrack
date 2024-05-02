@@ -1,4 +1,4 @@
-import { createGroupService, getGroupsByUserIdService } from "./group-service.js";
+import { createGroupService, editGroupByIdService, getGroupsByUserIdService } from "./group-service.js";
 
 export const createGroup = async (req, res, next) => {
     try {
@@ -15,7 +15,7 @@ export const createGroup = async (req, res, next) => {
     }
 }
 
-export const getGroupsByUserId = async (req, res, next) => {
+export const getOwnGroups = async (req, res, next) => {
     try {
         const groups = await getGroupsByUserIdService(req.tokenData.userId);
         res.status(200).json(
@@ -23,6 +23,21 @@ export const getGroupsByUserId = async (req, res, next) => {
                 success: true,
                 message: "Groups fetched successfully",
                 data: groups,
+            }
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const editOwnGroupById = async (req, res, next) => {
+    try {
+        const editedGroup = await editGroupByIdService(req.tokenData.userId, req.params.groupId, req.body);
+        res.status(200).json(
+            {
+                success: true,
+                message: "Group updated successfully",
+                data: editedGroup,
             }
         );
     } catch (error) {
