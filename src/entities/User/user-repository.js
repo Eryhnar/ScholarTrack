@@ -33,3 +33,15 @@ export const getUserWithPasswordRepository = async (id) => {
         throw error;
     }
 }
+
+export const getUserByIdRepository = async (id) => {
+    try {
+        const user = await User.findById(id).select("+role");
+        if (!user) {
+            throw new NotFoundError(404, "User not found");
+        }
+        return user;
+    } catch (error) {
+        throw error;
+    }
+}

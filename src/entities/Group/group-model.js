@@ -52,6 +52,7 @@ const groupSchema = new Schema(
             type: String,
             enum: ["active", "inactive"],
             required: true,
+            default: "active",
         },
     },
     {
