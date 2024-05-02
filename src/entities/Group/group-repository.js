@@ -47,3 +47,19 @@ export const editGroupByIdRepository = async (userId, groupId, groupData) => {
         throw error;
     }
 }
+
+export const deleteGroupByIdRepository = async (userId, groupId) => {
+    try {
+        await Group.findOneAndDelete(
+            {
+                _id: groupId,
+                $or: [
+                    { author: userId },
+                    { collaborators: userId }
+                ]
+            },
+        );
+    } catch (error) {
+        throw error;
+    }
+} 

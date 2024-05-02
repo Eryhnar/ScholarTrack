@@ -1,4 +1,4 @@
-import { createGroupService, editGroupByIdService, getGroupsByUserIdService } from "./group-service.js";
+import { createGroupService, deleteGroupByIdService, editGroupByIdService, getGroupsByUserIdService } from "./group-service.js";
 
 export const createGroup = async (req, res, next) => {
     try {
@@ -38,6 +38,20 @@ export const editOwnGroupById = async (req, res, next) => {
                 success: true,
                 message: "Group updated successfully",
                 data: editedGroup,
+            }
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const deleteOwnGroupById = async (req, res, next) => {
+    try {
+        await deleteGroupByIdService(req.tokenData.userId, req.params.groupId);
+        res.status(200).json(
+            {
+                success: true,
+                message: "Group deleted successfully",
             }
         );
     } catch (error) {

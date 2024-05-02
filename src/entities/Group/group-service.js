@@ -1,5 +1,5 @@
 import InvalidInputError from "../../utils/errors/invalidInputError.js";
-import { createGroupRepository, editGroupByIdRepository, getGroupsByUserIdRepository } from "./group-repository.js";
+import { createGroupRepository, deleteGroupByIdRepository, editGroupByIdRepository, getGroupsByUserIdRepository } from "./group-repository.js";
 import { getUserByIdRepository } from "../User/user-repository.js";
 
 export const createGroupService = async (authorId, groupData) => {
@@ -33,18 +33,32 @@ export const getGroupsByUserIdService = async (userId) => {
 export const editGroupByIdService = async (userId, groupId, groupData) => {
     try {
         const { name, level } = groupData;
-        if (!name || !level) {
-            throw new InvalidInputError(400, "Group name and level are required");
+        const editedFields = {};
+        if (name) {
+            //validate
+            editedFields.name = name;
         }
 
-        // get group by id?
-        const editedGroup = await editGroupByIdRepository(userId, groupId, groupData);
+        if (level) {
+            //validate
+            editedFields.level = level;
+        }
+
+        const editedGroup = await editGroupByIdRepository(userId, groupId, editedFields);
 
         if (!editedGroup) {
             throw new InvalidInputError(400, "Something went wrong, please try again later");
         }
 
         return editedGroup;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const deleteGroupByIdService = async (userId, groupId) => {
+    try {
+        await deleteGroupByIdRepository(userId, groupId);
     } catch (error) {
         throw error;
     }

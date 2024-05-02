@@ -50,7 +50,7 @@ const groupSchema = new Schema(
         ],
         status: {
             type: String,
-            enum: ["active", "inactive"],
+            enum: ["active", "archived"],
             required: true,
             default: "active",
         },
