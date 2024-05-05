@@ -62,4 +62,21 @@ export const deleteGroupByIdRepository = async (userId, groupId) => {
     } catch (error) {
         throw error;
     }
-} 
+}
+
+export const getGroupByIdRepository = async (userId, groupId) => {
+    try {
+        const group = await Group.findOne(
+            {
+                _id: groupId,
+                $or: [
+                    { author: userId },
+                    { collaborators: userId }
+                ]
+            },
+        );
+        return group;
+    } catch (error) {
+        throw error;
+    }
+}

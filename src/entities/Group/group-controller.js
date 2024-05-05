@@ -1,4 +1,4 @@
-import { createGroupService, deleteGroupByIdService, editGroupByIdService, getGroupsByUserIdService } from "./group-service.js";
+import { createGroupService, deleteGroupByIdService, editGroupByIdService, getGroupByIdService, getGroupsByUserIdService } from "./group-service.js";
 
 export const createGroup = async (req, res, next) => {
     try {
@@ -52,6 +52,32 @@ export const deleteOwnGroupById = async (req, res, next) => {
             {
                 success: true,
                 message: "Group deleted successfully",
+            }
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const getGroupById = async (req, res, next) => {
+    try {
+        const group = await getGroupByIdService(req.tokenData.userId ,req.params.groupId);
+
+        if (!group) {
+            res.status(404).json(
+                {
+                    success: false,
+                    message: "Group not found",
+                }
+            );
+            return;
+        }
+
+        res.status(200).json(
+            {
+                success: true,
+                message: "Group fetched successfully",
+                data: group,
             }
         );
     } catch (error) {

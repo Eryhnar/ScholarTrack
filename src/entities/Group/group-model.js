@@ -33,21 +33,20 @@ const groupSchema = new Schema(
                 ref: "Task",
             },
         ],
-        gradingScale: [
-            {
-                grade: {
-                    type: String,
+        gradingScale: {
+            grade: {
+                type: String,
+            },
+            range: {
+                min: {
+                    type: Number,
                 },
-                range: {
-                    min: {
-                        type: Number,
-                    },
-                    max: {
-                        type: Number,
-                    }
-                },
-            } 
-        ],
+                max: {
+                    type: Number,
+                }
+            },
+        },
+        
         status: {
             type: String,
             enum: ["active", "archived"],
