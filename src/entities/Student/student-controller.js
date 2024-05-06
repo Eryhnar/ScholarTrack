@@ -1,4 +1,4 @@
-import { createStudentService, getGroupStudentByIdService, getGroupStudentsService } from "./student-service.js";
+import { createStudentService, editGroupStudentByIdService, getGroupStudentByIdService, getGroupStudentsService } from "./student-service.js";
 
 export const createStudent = async (req, res, next) => {
     try {
@@ -53,6 +53,10 @@ export const getGroupStudentById = async (req, res, next) => {
 
 export const editGroupStudentById = async (req, res, next) => {
     try {
+        const userId = req.tokenData.userId;
+        const { groupId, studentId } = req.params;
+        const studentInfo = req.body;
+        const student = await editGroupStudentByIdService(userId, groupId, studentId, studentInfo);
         res.status(200).json(
             {
                 success: true,

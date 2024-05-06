@@ -39,15 +39,31 @@ export const isUserAuthorizedForGroup = async (userId, groupId) => {
     }
 }
 
-export const getGroupStudentByIdRepository = async (groupId, studentId) => {
+export const getGroupStudentByIdRepository = async (studentId) => {
     try {
         const student = await Student.findOne(
             {
                 _id: studentId,
-                groups: groupId,
             }
         );
         return student;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const editStudentByIdRepository = async (studentId, studentInfo) => {
+    try {
+        const updatedStudent = await Student.findOneAndUpdate(
+            {
+                _id: studentId,
+            },
+            studentInfo,
+            {
+                new: true,
+            }
+        );
+        return updatedStudent;
     } catch (error) {
         throw error;
     }
