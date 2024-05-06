@@ -1,4 +1,4 @@
-import { createStudentRepository, getGroupStudentsRepository } from './student-repository.js';
+import { createStudentRepository, getGroupStudentByIdRepository, getGroupStudentsRepository, isUserAuthorizedForGroup } from './student-repository.js';
 
 export const createStudentService = async (studentData) => {
     try {
@@ -24,6 +24,21 @@ export const getGroupStudentsService = async (groupId) => {
     try {
         const students = await getGroupStudentsRepository(groupId);
         return students;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getGroupStudentByIdService = async (userId, groupId, studentId) => {
+    try {
+        if ( !groupId || !studentId ) {
+            throw new InvalidInputError(400, "Please provide all required fields");
+        }
+        if ( !isUserAuthorizedForGroup(userId, groupId) ) {
+            throw new UnauthorizedError(403, "You are not authorized to view this group");
+        }
+        const student = await getGroupStudentByIdRepository(groupId, studentId);
+        return student;
     } catch (error) {
         throw error;
     }
