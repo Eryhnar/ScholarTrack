@@ -1,4 +1,3 @@
-import Group from "../Group/group-model.js";
 import Student from "./student-model.js";
 
 export const createStudentRepository = async (studentInfo) => {
@@ -25,19 +24,19 @@ export const getGroupStudentsRepository = async (groupId) => {
     }
 }
 
-export const isUserAuthorizedForGroup = async (userId, groupId) => {
-    try {
-        return await Group.exists({
-            _id: groupId,
-            $or: [
-                { author: userId },
-                { collaborators: { $in: [userId] } }
-            ]
-        });
-    } catch (error) {
-        throw error;
-    }
-}
+// export const isUserAuthorizedForGroup = async (userId, groupId) => {
+//     try {
+//         return await Group.exists({
+//             _id: groupId,
+//             $or: [
+//                 { author: userId },
+//                 { collaborators: { $in: [userId] } }
+//             ]
+//         });
+//     } catch (error) {
+//         throw error;
+//     }
+// }
 
 export const getGroupStudentByIdRepository = async (studentId) => {
     try {
@@ -64,6 +63,18 @@ export const editStudentByIdRepository = async (studentId, studentInfo) => {
             }
         );
         return updatedStudent;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const studentExists = async (studentId) => {
+    try {
+        return await Student.exists(
+            {
+                _id: studentId,
+            }
+        );
     } catch (error) {
         throw error;
     }

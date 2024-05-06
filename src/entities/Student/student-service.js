@@ -1,4 +1,8 @@
-import { createStudentRepository, editStudentByIdRepository, getGroupStudentByIdRepository, getGroupStudentsRepository, isUserAuthorizedForGroup } from './student-repository.js';
+import NotFoundError from '../../utils/errors/NotFoundError.js';
+import { createStudentRepository, editStudentByIdRepository, getGroupStudentByIdRepository, getGroupStudentsRepository, studentExists } from './student-repository.js';
+import InvalidInputError from '../../utils/errors/InvalidInputError.js';
+import UnauthorizedError from '../../utils/errors/UnauthorizedError.js';
+import { isUserAuthorizedForGroup } from '../Group/group-repository.js';
 
 export const createStudentService = async (userId, studentData) => {
     try {
@@ -68,8 +72,7 @@ export const editGroupStudentByIdService = async (userId, groupId, studentId, st
         if (!(await isUserAuthorizedForGroup(userId, groupId))) {
             throw new UnauthorizedError(403, "You are not authorized to view this group");
         }
-        const student = await getGroupStudentByIdRepository(groupId, studentId);
-        if (!student) {
+        if (!(await studentExists(studentId))) {
             throw new NotFoundError(404, "Student not found");
         }
         const updatedStudent = await editStudentByIdRepository(studentId, newInfo);
