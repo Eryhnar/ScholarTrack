@@ -38,5 +38,13 @@ const studentSchema = new Schema(
             type: Number,
             required: true,
         },
+    },
+    {
+        timestamps: true,
+        versionKey: false,
     }
 )
+
+const Student = model("Student", studentSchema);
+
+export default Student;
