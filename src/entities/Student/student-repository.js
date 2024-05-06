@@ -10,3 +10,16 @@ export const createStudentRepository = async (studentInfo) => {
         throw error;
     }
 }
+
+export const getGroupStudentsRepository = async (groupId) => {
+    try {
+        const students = await Student.find(
+            {
+                groups: groupId,
+            }
+        );
+        return students;
+    } catch (error) {
+        throw error;
+    }
+}

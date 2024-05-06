@@ -1,4 +1,4 @@
-import { createStudentService } from "./student-service.js";
+import { createStudentService, getGroupStudentsService } from "./student-service.js";
 
 export const createStudent = async (req, res, next) => {
     try {
