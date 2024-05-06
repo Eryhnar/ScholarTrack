@@ -16,10 +16,12 @@ const studentSchema = new Schema(
                 ref: "Mark",
             },
         ],
-        group: {
-            type: Schema.Types.ObjectId,
-            ref: "Group",
-        },
+        // groups: [
+        //     {
+        //         type: Schema.Types.ObjectId,
+        //         ref: "Group",
+        //     },
+        // ],
         status: {
             type: String,
             enum: ["active", "archived"],
