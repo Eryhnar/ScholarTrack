@@ -2,7 +2,8 @@ import { createStudentService, getGroupStudentByIdService, getGroupStudentsServi
 
 export const createStudent = async (req, res, next) => {
     try {
-        const student = await createStudentService(req.body);
+        const userId = req.tokenData.userId;
+        const student = await createStudentService(userId, req.body);
         res.status(201).json(
             {
                 success: true,
@@ -17,8 +18,9 @@ export const createStudent = async (req, res, next) => {
 
 export const getGroupStudents = async (req, res, next) => {
     try {
+        const userId = req.tokenData.userId;
         const { groupId } = req.params;
-        const students = await getGroupStudentsService(groupId);
+        const students = await getGroupStudentsService(userId, groupId);
         res.status(200).json(
             {
                 success: true,
@@ -33,8 +35,8 @@ export const getGroupStudents = async (req, res, next) => {
 
 export const getGroupStudentById = async (req, res, next) => {
     try {
-        const { groupId, studentId } = req.params;
         const userId = req.tokenData.userId
+        const { groupId, studentId } = req.params;
 
         const student = await getGroupStudentByIdService(userId, groupId, studentId);
         res.status(200).json(
@@ -42,6 +44,20 @@ export const getGroupStudentById = async (req, res, next) => {
                 success: true,
                 message: "Student fetched successfully",
                 data: student,
+            }
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const editGroupStudentById = async (req, res, next) => {
+    try {
+        res.status(200).json(
+            {
+                success: true,
+                message: "Student updated successfully",
+                data: {},
             }
         );
     } catch (error) {
