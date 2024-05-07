@@ -80,3 +80,31 @@ export const getGroupByIdRepository = async (userId, groupId) => {
         throw error;
     }
 }
+
+export const groupExists = async (userId, groupId) => {
+    try {
+        return await Group.exists({
+            _id: groupId,
+            $or: [
+                { author: userId },
+                { collaborators: userId }
+            ]
+        });
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const isUserAuthorizedForGroup = async (userId, groupId) => {
+    try {
+        return await Group.exists({
+            _id: groupId,
+            $or: [
+                { author: userId },
+                { collaborators: { $in: [userId] } }
+            ]
+        });
+    } catch (error) {
+        throw error;
+    }
+}

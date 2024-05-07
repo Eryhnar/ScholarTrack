@@ -21,18 +21,18 @@ const groupSchema = new Schema(
             type: String,
             required: true,
         },
-        students: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Student",
-            },
-        ],
-        tasks: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Task",
-            },
-        ],
+        // students: [
+        //     {
+        //         type: Schema.Types.ObjectId,
+        //         ref: "Student",
+        //     },
+        // ],
+        // tasks: [
+        //     {
+        //         type: Schema.Types.ObjectId,
+        //         ref: "Task",
+        //     },
+        // ],
         gradingScale: {
             grade: {
                 type: String,
