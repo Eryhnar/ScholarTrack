@@ -24,20 +24,6 @@ export const getGroupStudentsRepository = async (groupId) => {
     }
 }
 
-// export const isUserAuthorizedForGroup = async (userId, groupId) => {
-//     try {
-//         return await Group.exists({
-//             _id: groupId,
-//             $or: [
-//                 { author: userId },
-//                 { collaborators: { $in: [userId] } }
-//             ]
-//         });
-//     } catch (error) {
-//         throw error;
-//     }
-// }
-
 export const getGroupStudentByIdRepository = async (studentId) => {
     try {
         const student = await Student.findOne(

@@ -1,5 +1,5 @@
 import InvalidInputError from "../../utils/errors/invalidInputError.js";
-import { createGroupRepository, deleteGroupByIdRepository, editGroupByIdRepository, getGroupByIdRepository, getGroupsByUserIdRepository } from "./group-repository.js";
+import { createGroupRepository, deleteGroupByIdRepository, editGroupByIdRepository, getGroupByIdRepository, getGroupsByUserIdRepository, groupExists } from "./group-repository.js";
 import { getUserByIdRepository } from "../User/user-repository.js";
 
 export const createGroupService = async (authorId, groupData) => {
@@ -42,6 +42,10 @@ export const editGroupByIdService = async (userId, groupId, groupData) => {
         if (level) {
             //validate
             editedFields.level = level;
+        }
+
+        if (!(await groupExists(userId, groupId))) {
+            throw new InvalidInputError(400, "Group does not exist");
         }
 
         const editedGroup = await editGroupByIdRepository(userId, groupId, editedFields);
