@@ -21,3 +21,17 @@ export const getGroupTasksRepository = async (groupId) => {
         throw error;
     }
 }
+
+export const getGroupTaskByIdRepository = async (groupId, taskId) => {
+    try {
+        const task = await Task.findOne(
+            {
+                _id: taskId,
+                groups: { $in: [groupId] }
+            }
+        );
+        return task;
+    } catch (error) {
+        throw error;
+    }
+}
