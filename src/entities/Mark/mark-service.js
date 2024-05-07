@@ -1,4 +1,7 @@
-import { isUserAuthorizedForGroup } from "../Group/group-repository";
+import InvalidInputError from "../../utils/errors/InvalidInputError.js";
+import UnauthorizedError from "../../utils/errors/UnauthorizedError.js";
+import { isUserAuthorizedForGroup } from "../Group/group-repository.js";
+import { createMarkRepository } from "./mark-repository.js";
 
 export const createMarkService = async (userId, markInfo) => {
     try {
@@ -11,7 +14,7 @@ export const createMarkService = async (userId, markInfo) => {
             throw new UnauthorizedError(403, "You are not authorized to view this task");
         }
 
-        const mark = await createMarkRepository(userId, markInfo);
+        const mark = await createMarkRepository(markInfo);
         return mark;
     } catch (error) {
         throw error;
