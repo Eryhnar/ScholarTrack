@@ -33,6 +33,10 @@ const taskSchema = new Schema(
                 type: String,
             },
         ],
+    },
+    {
+        timestamps: true,
+        versionKey: false,
     }
 )
 
