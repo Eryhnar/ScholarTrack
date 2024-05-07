@@ -12,6 +12,12 @@ const taskSchema = new Schema(
         deadline: {
             type: Date,
         },
+        groups: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Group",
+            },
+        ],
         weight: {
             type: Schema.Types.Mixed,
             required: true,

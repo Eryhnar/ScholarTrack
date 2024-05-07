@@ -8,3 +8,12 @@ export const createTaskRepository = async (newTask) => {
         throw error;
     }
 }
+
+export const getGroupTasksRepository = async (groupId) => {
+    try {
+        const tasks = await Task.find({ group: groupId });
+        return tasks;
+    } catch (error) {
+        throw error;
+    }
+}
