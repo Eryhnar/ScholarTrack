@@ -53,3 +53,16 @@ export const editTaskRepository = async (groupId, taskId, newInfo) => {
         throw error;
     }
 }
+
+export const deleteTaskRepository = async (groupId, taskId) => {
+    try {
+        await Task.findOneAndDelete(
+            {
+                _id: taskId,
+                groups: { $in: [groupId] }
+            }
+        );
+    } catch (error) {
+        throw error;
+    }
+}

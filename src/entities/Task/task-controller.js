@@ -1,4 +1,4 @@
-import { createTaskService, editTaskService, getGroupTaskByIdService, getGroupTasksService } from "./task-service.js";
+import { createTaskService, deleteTaskService, editTaskService, getGroupTaskByIdService, getGroupTasksService } from "./task-service.js";
 
 export const createTask = async (req, res) => {
     try {
@@ -62,6 +62,23 @@ export const editTask = async (req, res) => {
             {
                 success: true,
                 message: "Task edited successfully",
+                data: task,
+            }
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const deleteTask = async (req, res) => {
+    try {
+        const userId = req.tokenData.userId;
+        const { groupId, taskId } = req.params;
+        const task = await deleteTaskService(userId, groupId, taskId);
+        res.status(200).json(
+            {
+                success: true,
+                message: "Task deleted successfully",
                 data: task,
             }
         );
