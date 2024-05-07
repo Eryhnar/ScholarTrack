@@ -10,3 +10,16 @@ export const createMarkRepository = async (markInfo) => {
         throw error;
     }
 }
+
+export const getAllGroupMarksRepository = async (groupId) => {
+    try {
+        const marks = await Mark.find(
+            {
+                group: groupId
+            }
+        );
+        return marks;
+    } catch (error) {
+        throw error;
+    }
+}

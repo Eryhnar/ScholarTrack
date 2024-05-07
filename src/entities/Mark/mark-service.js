@@ -1,7 +1,7 @@
 import InvalidInputError from "../../utils/errors/InvalidInputError.js";
 import UnauthorizedError from "../../utils/errors/UnauthorizedError.js";
 import { isUserAuthorizedForGroup } from "../Group/group-repository.js";
-import { createMarkRepository } from "./mark-repository.js";
+import { createMarkRepository, getAllGroupMarksRepository } from "./mark-repository.js";
 
 export const createMarkService = async (userId, markInfo) => {
     try {
@@ -16,6 +16,23 @@ export const createMarkService = async (userId, markInfo) => {
 
         const mark = await createMarkRepository(markInfo);
         return mark;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getAllGroupMarksService = async (userId, groupId) => {
+    try {
+        if (!groupId) {
+            throw new InvalidInputError(400, "Please provide all required fields");
+        }
+
+        if (!(await isUserAuthorizedForGroup(userId, groupId))) {
+            throw new UnauthorizedError(403, "You are not authorized to view this group");
+        }
+
+        const marks = await getAllGroupMarksRepository(groupId);
+        return marks;
     } catch (error) {
         throw error;
     }
