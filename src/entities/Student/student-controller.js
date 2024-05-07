@@ -1,4 +1,4 @@
-import { archiveStudentService, createStudentService, editGroupStudentByIdService, getGroupStudentByIdService, getGroupStudentsService } from "./student-service.js";
+import { archiveStudentService, createStudentService, deleteStudentService, editGroupStudentByIdService, getGroupStudentByIdService, getGroupStudentsService } from "./student-service.js";
 
 export const createStudent = async (req, res, next) => {
     try {
@@ -78,6 +78,22 @@ export const archiveStudent = async (req, res, next) => {
             {
                 success: true,
                 message: "Student archived successfully",
+            }
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const deleteStudent = async (req, res, next) => {
+    try {
+        const userId = req.tokenData.userId;
+        const { groupId, studentId } = req.params;
+        await deleteStudentService(userId, groupId, studentId);
+        res.status(200).json(
+            {
+                success: true,
+                message: "Student deleted successfully",
             }
         );
     } catch (error) {

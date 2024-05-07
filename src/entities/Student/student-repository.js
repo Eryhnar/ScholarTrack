@@ -67,3 +67,15 @@ export const studentExists = async (studentId) => {
         throw error;
     }
 }
+
+export const deleteStudentRepository = async (studentId) => {
+    try {
+        await Student.findOneAndDelete(
+            {
+                _id: studentId,
+            }
+        );
+    } catch (error) {
+        throw error;
+    }
+}

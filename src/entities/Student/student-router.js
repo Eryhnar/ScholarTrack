@@ -1,7 +1,7 @@
 import { Router } from "express";
 import auth from "../../middlewares/auth.js";
 import errorHandler from "../../middlewares/errorHandler.js";
-import { archiveStudent, createStudent, editGroupStudentById, getGroupStudentById, getGroupStudents } from "./student-controller.js";
+import { archiveStudent, createStudent, deleteStudent, editGroupStudentById, getGroupStudentById, getGroupStudents } from "./student-controller.js";
 
 const router = Router();
 
@@ -11,5 +11,6 @@ router.get("/:groupId", auth, getGroupStudents, errorHandler);
 router.get("/:groupId/:studentId", auth, getGroupStudentById, errorHandler); // the group id is there to verify that the user can access the info
 router.put("/:groupId/:studentId", auth, editGroupStudentById, errorHandler); // the group id is there to verify that the user can access the info
 router.put("/:groupId/:studentId/archive", auth, archiveStudent, errorHandler); 
+router.delete("/:groupId/:studentId", auth, deleteStudent, errorHandler);
 
 export default router;

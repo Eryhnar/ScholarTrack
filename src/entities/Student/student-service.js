@@ -1,5 +1,5 @@
 import NotFoundError from '../../utils/errors/NotFoundError.js';
-import { createStudentRepository, editStudentByIdRepository, getGroupStudentByIdRepository, getGroupStudentsRepository, studentExists } from './student-repository.js';
+import { createStudentRepository, deleteStudentRepository, editStudentByIdRepository, getGroupStudentByIdRepository, getGroupStudentsRepository, studentExists } from './student-repository.js';
 import InvalidInputError from '../../utils/errors/InvalidInputError.js';
 import UnauthorizedError from '../../utils/errors/UnauthorizedError.js';
 import { isUserAuthorizedForGroup } from '../Group/group-repository.js';
@@ -94,6 +94,23 @@ export const archiveStudentService = async (userId, groupId, studentId) => {
             throw new NotFoundError(404, "Student not found");
         }
         await editStudentByIdRepository(studentId, { status: "archived" });
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const deleteStudentService = async (userId, groupId, studentId) => {
+    try {
+        if (!groupId || !studentId) {
+            throw new InvalidInputError(400, "Please provide all required fields");
+        }
+        if (!(await isUserAuthorizedForGroup(userId, groupId))) {
+            throw new UnauthorizedError(403, "You are not authorized to view this group");
+        }
+        if (!(await studentExists(studentId))) {
+            throw new NotFoundError(404, "Student not found");
+        }
+        await deleteStudentRepository(studentId);
     } catch (error) {
         throw error;
     }
