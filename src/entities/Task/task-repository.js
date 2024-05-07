@@ -11,7 +11,11 @@ export const createTaskRepository = async (newTask) => {
 
 export const getGroupTasksRepository = async (groupId) => {
     try {
-        const tasks = await Task.find({ group: groupId });
+        const tasks = await Task.find(
+            { 
+                groups: { $in: [groupId] }
+            }
+        );
         return tasks;
     } catch (error) {
         throw error;

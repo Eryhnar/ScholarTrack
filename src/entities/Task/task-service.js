@@ -8,6 +8,11 @@ export const createTaskService = async (userId, groupId, taskInfo) => {
         const { name, description, deadline, weight, optional, tags } = taskInfo;
         const newTask = {}
 
+        if (!groupId) { // TODO remove once I implement add task to group to reuse task in multiple groups
+            throw new InvalidInputError(400, "Please provide all required fields");
+        }
+        newTask.groups = [groupId]; // TODO remove once I implement add task to group to reuse task in multiple groups
+
         if (!name) {
             throw new InvalidInputError(400, "Name is required");
         }
@@ -22,6 +27,10 @@ export const createTaskService = async (userId, groupId, taskInfo) => {
         if (deadline) newTask.deadline = deadline;
         if (optional) newTask.optional = optional;
         if (tags) newTask.tags = tags;
+
+        if (!(await isUserAuthorizedForGroup(userId, groupId))) {
+            throw new UnauthorizedError(403, "You are not authorized to view this group");
+        }
 
         const task = await createTaskRepository(newTask);
         return task;
