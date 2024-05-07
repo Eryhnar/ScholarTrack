@@ -35,3 +35,21 @@ export const getGroupTaskByIdRepository = async (groupId, taskId) => {
         throw error;
     }
 }
+
+export const editTaskRepository = async (groupId, taskId, newInfo) => {
+    try {
+        const editedTask = await Task.findOneAndUpdate(
+            {
+                _id: taskId,
+                groups: { $in: [groupId] }
+            },
+            newInfo,
+            {
+                new: true
+            }
+        );
+        return editedTask;
+    } catch (error) {
+        throw error;
+    }
+}

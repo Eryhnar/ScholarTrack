@@ -1,7 +1,7 @@
 import InvalidInputError from "../../utils/errors/InvalidInputError.js";
 import UnauthorizedError from "../../utils/errors/UnauthorizedError.js";
 import { isUserAuthorizedForGroup } from "../Group/group-repository.js";
-import { createTaskRepository, getGroupTaskByIdRepository, getGroupTasksRepository } from "./task-repository.js";
+import { createTaskRepository, editTaskRepository, getGroupTaskByIdRepository, getGroupTasksRepository } from "./task-repository.js";
 
 export const createTaskService = async (userId, groupId, taskInfo) => {
     try {
@@ -80,6 +80,31 @@ export const getGroupTaskByIdService = async (userId, groupId, taskId) => {
         // }
 
         const task = await getGroupTaskByIdRepository(groupId, taskId);
+        return task;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const editTaskService = async (userId, groupId, taskId, taskInfo) => {
+    try {
+        const { name, description, deadline, weight, optional, tags } = taskInfo;
+        const newInfo = {};
+        if (!groupId || !taskId) {
+            throw new InvalidInputError(400, "Group id and task id are required");
+        }
+        if (name) newInfo.name = name;
+        if (description) newInfo.description = description;
+        if (deadline) newInfo.deadline = deadline;
+        if (weight) newInfo.weight = weight;
+        if (optional) newInfo.optional = optional;
+        if (tags) newInfo.tags = tags;
+
+        if (!(await isUserAuthorizedForGroup(userId, groupId))) {
+            throw new UnauthorizedError(403, "You are not authorized to view this group");
+        }
+
+        const task = await editTaskRepository(groupId, taskId, newInfo);
         return task;
     } catch (error) {
         throw error;
