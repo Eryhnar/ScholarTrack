@@ -16,6 +16,7 @@ export const getGroupStudentsRepository = async (groupId) => {
         const students = await Student.find(
             {
                 groups: groupId,
+                status: "active",
             }
         );
         return students;
@@ -29,6 +30,7 @@ export const getGroupStudentByIdRepository = async (studentId) => {
         const student = await Student.findOne(
             {
                 _id: studentId,
+                status: "active",
             }
         );
         return student;

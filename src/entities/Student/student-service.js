@@ -81,3 +81,20 @@ export const editGroupStudentByIdService = async (userId, groupId, studentId, st
         throw error;
     }
 }
+
+export const archiveStudentService = async (userId, groupId, studentId) => {
+    try {
+        if (!groupId || !studentId) {
+            throw new InvalidInputError(400, "Please provide all required fields");
+        }
+        if (!(await isUserAuthorizedForGroup(userId, groupId))) {
+            throw new UnauthorizedError(403, "You are not authorized to view this group");
+        }
+        if (!(await studentExists(studentId))) {
+            throw new NotFoundError(404, "Student not found");
+        }
+        await editStudentByIdRepository(studentId, { status: "archived" });
+    } catch (error) {
+        throw error;
+    }
+}
