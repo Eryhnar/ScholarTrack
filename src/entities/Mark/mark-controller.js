@@ -1,4 +1,4 @@
-import { createMarkService, editStudentMarkService, getAllGroupMarksService } from "./mark-service.js";
+import { createMarkService, deleteStudentMarkService, editStudentMarkService, getAllGroupMarksService } from "./mark-service.js";
 
 export const createMark = async (req, res, next) => {
     try {
@@ -50,6 +50,22 @@ export const editStudentMark = async (req, res, next) => {
                 success: true,
                 message: "Mark edited successfully",
                 data: mark,
+            }
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const deleteStudentMark = async (req, res, next) => {
+    try {
+        const userId = req.tokenData.userId;
+        const { groupId, markId } = req.params;
+        await deleteStudentMarkService(userId, groupId, markId);
+        res.status(200).json(
+            {
+                success: true,
+                message: "Mark deleted successfully",
             }
         );
     } catch (error) {

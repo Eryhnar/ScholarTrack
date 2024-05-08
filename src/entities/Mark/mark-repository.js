@@ -43,3 +43,12 @@ export const editStudentMarkRepository = async (markId, value) => {
         throw error;
     }
 }
+
+export const deleteStudentMarkRepository = async (markId) => {
+    try {
+        await Mark.findByIdAndDelete(markId);
+    }
+    catch (error) {
+        throw error;
+    }
+}
