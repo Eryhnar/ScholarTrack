@@ -23,3 +23,20 @@ export const getAllGroupMarksRepository = async (groupId) => {
         throw error;
     }
 }
+
+export const editStudentMarkRepository = async (markId, value) => {
+    try {
+        const mark = await Mark.findByIdAndUpdate(
+            markId,
+            {
+                value
+            },
+            {
+                new: true
+            }
+        );
+        return mark;
+    } catch (error) {
+        throw error;
+    }
+}
