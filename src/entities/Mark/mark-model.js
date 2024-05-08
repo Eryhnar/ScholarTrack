@@ -28,6 +28,8 @@ const markSchema = new Schema(
     }
 )
 
+markSchema.index({ student: 1, task: 1, group: 1 }, { unique: true });
+
 const Mark = model("Mark", markSchema);
 
 export default Mark;

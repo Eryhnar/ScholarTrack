@@ -7,6 +7,9 @@ export const createMarkRepository = async (markInfo) => {
         );
         return mark;
     } catch (error) {
+        if (error.code === 11000) {
+            throw new Error('A mark for this student, task, and group already exists');
+        }
         throw error;
     }
 }
