@@ -1,5 +1,5 @@
 
-const finalMark = (assignments, exam) => {
+const finalMark = (assignments) => {
     let total = 0
     let totalWeight = 0
     for (let i = 0; i < assignments.length; i++) {
