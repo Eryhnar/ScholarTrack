@@ -7,7 +7,7 @@ const router = Router();
 
 router.post("/", auth, createStudent, errorHandler);
 // router.get("/", auth, getStudents, errorHandler); // to be implemented in the future.
-router.get("/details/:groupId", auth, getStudentsOverview, errorHandler);
+router.get("/overview/:groupId", auth, getStudentsOverview, errorHandler);
 router.get("/:groupId", auth, getGroupStudents, errorHandler);
 router.get("/:groupId/:studentId", auth, getGroupStudentById, errorHandler); // the group id is there to verify that the user can access the info
 router.put("/:groupId/:studentId", auth, editGroupStudentById, errorHandler); // the group id is there to verify that the user can access the info

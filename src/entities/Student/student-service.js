@@ -3,6 +3,8 @@ import { createStudentRepository, deleteStudentRepository, editStudentByIdReposi
 import InvalidInputError from '../../utils/errors/InvalidInputError.js';
 import UnauthorizedError from '../../utils/errors/UnauthorizedError.js';
 import { isUserAuthorizedForGroup } from '../Group/group-repository.js';
+import finalMark from '../../utils/calculators/finalMark.js';
+import finalAttendance from '../../utils/calculators/finalAttendance.js';
 
 export const createStudentService = async (userId, studentData) => {
     try {
@@ -125,8 +127,17 @@ export const getStudentsOverviewService = async (userId, groupId) => {
         if (!(await isUserAuthorizedForGroup(userId, groupId))) {
             throw new UnauthorizedError(403, "You are not authorized to view this group");
         }
-        const student = await getStudentsOverviewRepository(groupId);
-        return student;
+        const students = await getStudentsOverviewRepository(groupId);
+        const finalStudents = students.map(student => {
+            const totalMarks = finalMark(student.marks);
+            const totalAttendance = finalAttendance(student.attendance);
+            return {
+                ...student,
+                totalMarks,
+                totalAttendance,
+            }
+        });
+        return finalStudents;
     } catch (error) {
         throw error;
     }
