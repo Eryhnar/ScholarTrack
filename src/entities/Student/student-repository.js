@@ -1,4 +1,7 @@
+import mongoose from "mongoose";
 import Student from "./student-model.js";
+import Attendance from "../Attendance/attendance-model.js";
+import Mark from "../Mark/mark-model.js";
 
 export const createStudentRepository = async (studentInfo) => {
     try {
@@ -79,3 +82,125 @@ export const deleteStudentRepository = async (studentId) => {
         throw error;
     }
 }
+
+// export const getStudentsOverviewRepository = async (groupId) => {
+//     try {
+//         const ObjectId = mongoose.Types.ObjectId;
+//         const students = await Student.aggregate([
+//             { $match: { groupId: ObjectId(groupId) } },
+//             {
+//                 $lookup: {
+//                     from: 'attendances',
+//                     let: { studentId: '$_id' },
+//                     pipeline: [
+//                         { $match: { $expr: { $and: [{ $eq: ['$studentId', '$$studentId'] }, { $eq: ['$groupId', ObjectId(groupId)] }] } } },
+//                     ],
+//                     as: 'attendances',
+//                 },
+//             },
+//             {
+//                 $lookup: {
+//                     from: 'marks',
+//                     let: { studentId: '$_id' },
+//                     pipeline: [
+//                         { $match: { $expr: { $and: [{ $eq: ['$studentId', '$$studentId'] }, { $eq: ['$groupId', ObjectId(groupId)] }] } } },
+//                     ],
+//                     as: 'marks',
+//                 },
+//             },
+//         ]);
+
+//         return students;
+//     } catch (error) {
+//         throw error;
+//     }
+// };
+
+export const getStudentsOverviewRepository = async (groupId) => {
+    try {
+        const objectId = new mongoose.Types.ObjectId(groupId);
+        const students = await Student.aggregate([
+            { $match: { groups: {$in:[objectId]} } },
+            {
+                $lookup: {
+                    from: 'attendances',
+                    let: { studentId: '$_id' },
+                    pipeline: [
+                        { 
+                            $match: { 
+                                $expr: { 
+                                    $and: [
+                                        { $eq: ['$studentId', '$$studentId'] }, 
+                                        { $eq: ['$groupId', groupId] }
+                                    ] 
+                                } 
+                            } 
+                        },
+                    ],
+                    as: 'attendances',
+                },
+            },
+            {
+                $lookup: {
+                    from: 'marks',
+                    let: { studentId: '$_id' },
+                    pipeline: [
+                        { 
+                            $match: { 
+                                $expr: { 
+                                    $and: [
+                                        { $eq: ['$studentId', '$$studentId'] }, 
+                                        { $eq: ['$groupId', groupId] }
+                                    ] 
+                                } 
+                            } 
+                        },
+                    ],
+                    as: 'marks',
+                },
+            },
+        ]);
+        // const students = await Student.find(
+        //     {
+        //         groups: {$in:[groupId]},
+        //     }
+        // );
+        console.log(students);
+        return students;
+    } catch (error) {
+        throw error;
+    }
+};
+
+// export const getStudentsOverviewRepository = async (groupId) => {
+//     try {
+//         let finalStudents = []
+//         const students = await Student.find(
+//             {
+//                 groups: { $in: [groupId] },
+//             }
+//         )
+//         for (const student of students) {
+//             const attendances = await Attendance.find(
+//                 {
+//                     student: student._id,
+//                     group: groupId,
+//                 }
+//             );
+//             const marks = await Mark.find(
+//                 {
+//                     student: student._id,
+//                     group: groupId,
+//                 }
+//             );
+//             finalStudents.push({
+//                 student,
+//                 attendances,
+//                 marks
+//             })
+//         }
+//         return finalStudents;
+//     } catch (error) {
+//         throw error;
+//     }
+// }

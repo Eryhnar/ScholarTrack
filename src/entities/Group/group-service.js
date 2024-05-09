@@ -1,4 +1,4 @@
-import InvalidInputError from "../../utils/errors/invalidInputError.js";
+import InvalidInputError from "../../utils/errors/InvalidInputError.js";
 import { createGroupRepository, deleteGroupByIdRepository, editGroupByIdRepository, getGroupByIdRepository, getGroupsByUserIdRepository, groupExists } from "./group-repository.js";
 import { getUserByIdRepository } from "../User/user-repository.js";
 
