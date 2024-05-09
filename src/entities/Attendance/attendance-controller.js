@@ -1,5 +1,6 @@
+import { createAttendanceService } from "./attendance-service.js";
 
-export const createAttendance = async (req, res, next) => {
+export const createAttendance = async (req, res, next) => { //this will be removed or changed when calendar is implemented
     try {
         const { date, present } = req.body;
         const { groupId, studentId } = req.params;
