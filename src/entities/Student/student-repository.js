@@ -165,7 +165,6 @@ export const getStudentsOverviewRepository = async (groupId) => {
         //         groups: {$in:[groupId]},
         //     }
         // );
-        console.log(students);
         return students;
     } catch (error) {
         throw error;
