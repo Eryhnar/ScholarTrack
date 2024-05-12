@@ -1,8 +1,10 @@
 import NotFoundError from '../../utils/errors/NotFoundError.js';
-import { createStudentRepository, deleteStudentRepository, editStudentByIdRepository, getGroupStudentByIdRepository, getGroupStudentsRepository, studentExists } from './student-repository.js';
+import { createStudentRepository, deleteStudentRepository, editStudentByIdRepository, getGroupStudentByIdRepository, getGroupStudentsRepository, getStudentsOverviewRepository, studentExists } from './student-repository.js';
 import InvalidInputError from '../../utils/errors/InvalidInputError.js';
 import UnauthorizedError from '../../utils/errors/UnauthorizedError.js';
 import { isUserAuthorizedForGroup } from '../Group/group-repository.js';
+import finalMark from '../../utils/calculators/finalMark.js';
+import finalAttendance from '../../utils/calculators/finalAttendance.js';
 
 export const createStudentService = async (userId, studentData) => {
     try {
@@ -111,6 +113,31 @@ export const deleteStudentService = async (userId, groupId, studentId) => {
             throw new NotFoundError(404, "Student not found");
         }
         await deleteStudentRepository(studentId);
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getStudentsOverviewService = async (userId, groupId) => {
+    try {
+        if (!groupId || !userId) {
+            throw new InvalidInputError(400, "Please provide all required fields");
+        }
+
+        if (!(await isUserAuthorizedForGroup(userId, groupId))) {
+            throw new UnauthorizedError(403, "You are not authorized to view this group");
+        }
+        const students = await getStudentsOverviewRepository(groupId);
+        const finalStudents = students.map(student => {
+            const totalMarks = finalMark(student.marks);
+            const totalAttendance = finalAttendance(student.attendances);
+            return {
+                ...student,
+                totalMarks,
+                totalAttendance,
+            }
+        });
+        return finalStudents;
     } catch (error) {
         throw error;
     }

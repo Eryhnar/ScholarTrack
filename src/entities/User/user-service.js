@@ -1,4 +1,4 @@
-import InvalidInputError from "../../utils/errors/invalidInputError.js";
+import InvalidInputError from "../../utils/errors/InvalidInputError.js";
 import comparePassword from "../../utils/treatment-utils.js/comparePassword.js";
 import hashPassword from "../../utils/treatment-utils.js/hashPassword.js";
 import isValidEmail from "../../utils/validators/isValidEmail.js";

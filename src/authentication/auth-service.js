@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import UnauthorizedError from "../utils/errors/UnauthorizedError.js";
-import InvalidInputError from "../utils/errors/invalidInputError.js";
+import InvalidInputError from "../utils/errors/InvalidInputError.js";
 import hashPassword from "../utils/treatment-utils.js/hashPassword.js";
 import isValidEmail from "../utils/validators/isValidEmail.js";
 import isValidPassword from "../utils/validators/isValidPassword.js";
