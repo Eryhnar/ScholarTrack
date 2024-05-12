@@ -129,7 +129,6 @@ export const getStudentsOverviewService = async (userId, groupId) => {
         }
         const students = await getStudentsOverviewRepository(groupId);
         const finalStudents = students.map(student => {
-            console.log(student);
             const totalMarks = finalMark(student.marks);
             const totalAttendance = finalAttendance(student.attendances);
             return {

@@ -18,10 +18,10 @@ export const createTaskService = async (userId, groupId, taskInfo) => {
         }
         newTask.name = name;
 
-        if (!weight) {
-            throw new InvalidInputError(400, "Weight is required");
+        if (!weight || weight < 1 || weight > 100) {
+            throw new InvalidInputError(400, "Weight is required and must be between 1 and 100");
         }
-        newTask.weight = weight;
+        newTask.weight = weight/100;
 
         if (description) newTask.description = description;
         if (deadline) newTask.deadline = deadline;
@@ -96,7 +96,12 @@ export const editTaskService = async (userId, groupId, taskId, taskInfo) => {
         if (name) newInfo.name = name;
         if (description) newInfo.description = description;
         if (deadline) newInfo.deadline = deadline;
-        if (weight) newInfo.weight = weight;
+        if (weight) {
+            if (weight < 1 || weight > 100) {
+                throw new InvalidInputError(400, "Weight must be between 1 and 100");
+            }
+            newInfo.weight = weight / 100;
+        }
         if (optional) newInfo.optional = optional;
         if (tags) newInfo.tags = tags;
 

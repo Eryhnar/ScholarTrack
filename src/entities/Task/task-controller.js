@@ -1,6 +1,6 @@
 import { createTaskService, deleteTaskService, editTaskService, getGroupTaskByIdService, getGroupTasksService } from "./task-service.js";
 
-export const createTask = async (req, res) => {
+export const createTask = async (req, res, next) => {
     try {
         const userId = req.tokenData.userId;
         const { groupId } = req.params;
@@ -18,7 +18,7 @@ export const createTask = async (req, res) => {
     }
 }
 
-export const getGroupTasks = async (req, res) => {
+export const getGroupTasks = async (req, res, next) => {
     try {
         const userId = req.tokenData.userId;
         const { groupId } = req.params;
@@ -35,7 +35,7 @@ export const getGroupTasks = async (req, res) => {
     }
 }
 
-export const getGroupTaskById = async (req, res) => {
+export const getGroupTaskById = async (req, res, next) => {
     try {
         const userId = req.tokenData.userId;
         const { groupId, taskId } = req.params;
@@ -52,7 +52,7 @@ export const getGroupTaskById = async (req, res) => {
     }
 }
 
-export const editTask = async (req, res) => {
+export const editTask = async (req, res, next) => {
     try {
         const userId = req.tokenData.userId;
         const { groupId, taskId } = req.params;
@@ -70,7 +70,7 @@ export const editTask = async (req, res) => {
     }
 }
 
-export const deleteTask = async (req, res) => {
+export const deleteTask = async (req, res, next) => {
     try {
         const userId = req.tokenData.userId;
         const { groupId, taskId } = req.params;

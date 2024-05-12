@@ -119,47 +119,69 @@ export const deleteStudentRepository = async (studentId) => {
 export const getStudentsOverviewRepository = async (groupId) => {
     try {
         const objectId = new mongoose.Types.ObjectId(groupId);
-        const students = await Student.aggregate([
-            { $match: { groups: {$in:[objectId]} } },
-            {
-                $lookup: {
-                    from: 'attendances',
-                    let: { studentId: '$_id' },
-                    pipeline: [
-                        { 
-                            $match: { 
-                                $expr: { 
-                                    $and: [
-                                        { $eq: ['$studentId', '$$studentId'] }, 
-                                        { $eq: ['$groupId', groupId] }
-                                    ] 
-                                } 
-                            } 
-                        },
-                    ],
-                    as: 'attendances',
+const students = await Student.aggregate([
+    { $match: { groups: {$in:[objectId]} } },
+    {
+        $lookup: {
+            from: 'attendances',
+            let: { studentId: '$_id' },
+            pipeline: [
+                { 
+                    $match: { 
+                        $expr: { 
+                            $and: [
+                                { $eq: ['$student', '$$studentId'] }, 
+                                { $eq: ['$group', objectId] }
+                            ] 
+                        } 
+                    } 
                 },
-            },
-            {
-                $lookup: {
-                    from: 'marks',
-                    let: { studentId: '$_id' },
-                    pipeline: [
-                        { 
-                            $match: { 
-                                $expr: { 
-                                    $and: [
-                                        { $eq: ['$studentId', '$$studentId'] }, 
-                                        { $eq: ['$groupId', groupId] }
-                                    ] 
-                                } 
-                            } 
-                        },
-                    ],
-                    as: 'marks',
+            ],
+            as: 'attendances',
+        },
+    },
+    {
+        $lookup: {
+            from: 'marks',
+            let: { studentId: '$_id' },
+            pipeline: [
+                { 
+                    $match: { 
+                        $expr: { 
+                            $and: [
+                                { $eq: ['$student', '$$studentId'] }, 
+                                { $eq: ['$group', objectId] }
+                            ] 
+                        } 
+                    } 
                 },
-            },
-        ]);
+                {
+                    $lookup: {
+                        from: 'tasks',
+                        let: { taskId: '$task' },
+                        pipeline: [
+                            { 
+                                $match: { 
+                                    $expr: { 
+                                        $eq: ['$_id', '$$taskId']
+                                    } 
+                                } 
+                            },
+                            {
+                                $project: {
+                                    weight: 1
+                                }
+                            }
+                        ],
+                        as: 'task',
+                    },
+                }
+            ],
+            as: 'marks',
+        },
+    },
+]);
+        // console.log(students);
         // const students = await Student.find(
         //     {
         //         groups: {$in:[groupId]},
