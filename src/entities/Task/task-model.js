@@ -23,7 +23,8 @@ const taskSchema = new Schema(
             required: true,
             validate: {
                 validator: (v) => {
-                    return typeof v === 'number' || v === 'auto';
+                    // return typeof v === 'number' || v === 'auto';
+                    return typeof v === 'string' || v === 'auto'; // TODO change to number or run validations in service
                 },
                 message: props => `${props.value} is not a valid weight!`
             },
