@@ -40,7 +40,6 @@ export const getAllGroupMarksService = async (userId, groupId) => {
 
 export const editStudentMarkService = async (userId, groupId, markId, value) => {
     try {
-        // maybe separate this into different errors?
         if (!groupId || !markId || !value) {
             throw new InvalidInputError(400, "Please provide all required fields");
         }

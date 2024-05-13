@@ -1,16 +1,5 @@
 import { createAttendanceRepository } from "./attendance-repository.js";
 
-// export const createAttendanceService = async (date, present, groupId, studentId) => {
-//     try {
-//         if (!date || !present || !groupId || !studentId) {
-//             throw new Error("All fields are required");
-//         }
-//         return await createAttendanceRepository(date, present, groupId, studentId);
-//     } catch (error) {
-//         throw error;
-//     }
-// }
-
 export const createAttendanceService = async (date, present, groupId, studentId) => {
     const session = await startSession();
     session.startTransaction();

@@ -6,7 +6,6 @@ import { archiveStudent, createStudent, deleteStudent, editGroupStudentById, get
 const router = Router();
 
 router.post("/", auth, createStudent, errorHandler);
-// router.get("/", auth, getStudents, errorHandler); // to be implemented in the future.
 router.get("/overview/:groupId", auth, getStudentsOverview, errorHandler);
 router.get("/:groupId", auth, getGroupStudents, errorHandler);
 router.get("/:groupId/:studentId", auth, getGroupStudentById, errorHandler); // the group id is there to verify that the user can access the info

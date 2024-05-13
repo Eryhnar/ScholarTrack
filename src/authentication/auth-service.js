@@ -19,7 +19,6 @@ export const registerService = async (data) => {
             throw new InvalidInputError(400, "Name must be between 3 and 50 characters and contain only letters and spaces");
         }
 
-        //TODO verifications
         if (!isValidEmail(email)) {
             throw new InvalidInputError(400, "Invalid email");
         }
@@ -28,7 +27,6 @@ export const registerService = async (data) => {
             throw new InvalidInputError(400, "Password must be between 8 and 16 characters, contain at least one lowercase letter, one uppercase letter and one number");
         }
 
-        //TODO hash password
         const hashedPassword = await hashPassword(password);
 
         registerUser(name, email, hashedPassword);
@@ -59,7 +57,6 @@ export const loginService = async (data) => {
                 userId: user._id,
                 name: user.name,
                 role: user.role,
-                // profilePicture: user.profilePicture,
             },
             process.env.JWT_SECRET,
             {

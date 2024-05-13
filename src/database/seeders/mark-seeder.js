@@ -10,7 +10,7 @@ const seedMarks = async (studentIds, taskIds, groupIds) => {
                     student: studentId,
                     task: taskId,
                     group: groupId,
-                    value: Math.floor(Math.random() * 100) + 1 // random mark between 1 and 100
+                    value: Math.floor(Math.random() * 100) + 1
                 });
             }
         }

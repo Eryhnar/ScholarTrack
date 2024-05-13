@@ -10,12 +10,6 @@ const studentSchema = new Schema(
             type: String,
             required: true,
         },
-        // marks: [
-        //     {
-        //         type: Schema.Types.ObjectId,
-        //         ref: "Mark",
-        //     },
-        // ],
         groups: [
             {
                 type: Schema.Types.ObjectId,
@@ -28,12 +22,6 @@ const studentSchema = new Schema(
             required: true,
             default: "active",
         },
-        // attendance: [
-        //     {
-        //         type: Schema.Types.ObjectId,
-        //         ref: "Attendance",
-        //     },
-        // ],
         age: {
             type: Number,
             required: true,
