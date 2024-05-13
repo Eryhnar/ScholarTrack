@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
 import UnauthorizedError from "../utils/errors/UnauthorizedError.js";
 import InvalidInputError from "../utils/errors/InvalidInputError.js";
-import hashPassword from "../utils/treatment-utils.js/hashPassword.js";
+import hashPassword from "../utils/treatment-utils/hashPassword.js";
 import isValidEmail from "../utils/validators/isValidEmail.js";
 import isValidPassword from "../utils/validators/isValidPassword.js";
 import { getUserToLogin, registerUser } from "./auth-repository.js";
-import comparePassword from "../utils/treatment-utils.js/comparePassword.js";
+import comparePassword from "../utils/treatment-utils/comparePassword.js";
 import isValidName from "../utils/validators/isValidName.js";
 
 export const registerService = async (data) => {

@@ -1,0 +1,541 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "ScholarTrack",
+    "collectionId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+    "dateExported": "2024-05-13T09:58:01.834Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "5cb3e209-2ae2-40be-8916-1a0484e6afd4",
+            "name": "auth",
+            "containerId": "",
+            "created": "2024-04-22T16:46:15.055Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "2932bef3-a8c0-4974-8cdb-3c016354e788",
+            "name": "User",
+            "containerId": "",
+            "created": "2024-05-01T10:50:37.965Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "bf295b87-51fe-4a7a-a9f6-112c5b0415b4",
+            "name": "Group",
+            "containerId": "",
+            "created": "2024-05-02T16:19:00.622Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "ad5152b8-28b8-4be5-a736-704859eb7c99",
+            "name": "Student",
+            "containerId": "",
+            "created": "2024-05-06T10:14:10.612Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "b310ee93-11b5-46b4-8476-da361733b3a5",
+            "name": "Task",
+            "containerId": "",
+            "created": "2024-05-07T14:31:33.755Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "12dca605-cbed-4686-89ac-fb7c7b45aae7",
+            "name": "mark",
+            "containerId": "",
+            "created": "2024-05-07T17:47:09.837Z",
+            "sortNum": 60000
+        },
+        {
+            "_id": "5d1152ab-8835-403b-a1bc-1a3f60c8646e",
+            "name": "Attendance",
+            "containerId": "",
+            "created": "2024-05-09T09:56:44.123Z",
+            "sortNum": 70000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "4863857e-1705-48c8-b849-909cf426b9ca",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "5cb3e209-2ae2-40be-8916-1a0484e6afd4",
+            "name": "register",
+            "url": "localhost:4000/api/auth/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-22T16:46:38.543Z",
+            "modified": "2024-04-22T17:25:40.576Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Marine\",\n  \"email\": \"marine@marine.com\",\n  \"password\": \"Aa123456\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "80ad3413-073f-4a2f-a59d-91fd224df82b",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "5cb3e209-2ae2-40be-8916-1a0484e6afd4",
+            "name": "login",
+            "url": "localhost:4000/api/auth/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-04-22T17:50:58.673Z",
+            "modified": "2024-05-06T15:00:50.597Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dani@user.com\",\n  \"password\": \"Aa123456\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "93c910a0-6ad0-4be2-979c-9617aa6d39f4",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "2932bef3-a8c0-4974-8cdb-3c016354e788",
+            "name": "Update Profile",
+            "url": "localhost:4000/api/user/profile",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-05-01T10:50:50.316Z",
+            "modified": "2024-05-01T11:12:11.566Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Marine\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "c684a065-c2f4-4891-8c7f-c82bfd0538dc",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "2932bef3-a8c0-4974-8cdb-3c016354e788",
+            "name": "Change Password",
+            "url": "localhost:4000/api/user/profile/password",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-05-01T18:09:21.336Z",
+            "modified": "2024-05-01T18:24:35.718Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"currentPassword\": \"Bb123456\",\n  \"newPassword\": \"Aa123456\",\n  \"confirmNewPassword\": \"Aa123456\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "49ca8580-8de9-45e1-b5d9-b75d2da61358",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "2932bef3-a8c0-4974-8cdb-3c016354e788",
+            "name": "Suspend User",
+            "url": "localhost:4000/api/user/profile/suspend",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-05-02T09:25:16.795Z",
+            "modified": "2024-05-02T09:25:51.217Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "c2d04d3b-4057-4e19-ab52-f3b1360abbab",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "bf295b87-51fe-4a7a-a9f6-112c5b0415b4",
+            "name": "Create Group",
+            "url": "localhost:4000/api/group/",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-05-02T16:19:08.262Z",
+            "modified": "2024-05-02T16:22:08.175Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"3º A\",\n  \"level\": \"3º\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "8faddace-966b-489c-98f4-f3c45a92f521",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "bf295b87-51fe-4a7a-a9f6-112c5b0415b4",
+            "name": "Get groups from user",
+            "url": "localhost:4000/api/group/",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-05-02T16:41:41.655Z",
+            "modified": "2024-05-02T16:43:40.120Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "68433415-a84e-4d41-8eeb-83762914fff2",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "bf295b87-51fe-4a7a-a9f6-112c5b0415b4",
+            "name": "Edit own group by id",
+            "url": "localhost:4000/api/group/6634a8c7cfb0310fa3525830",
+            "method": "PUT",
+            "sortNum": 80000,
+            "created": "2024-05-02T16:59:28.692Z",
+            "modified": "2024-05-05T10:58:44.876Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"6º B\",\n  \"level\": \"6º\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "da9b6db6-e4ee-427c-b9ee-7adc14e97c9a",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "bf295b87-51fe-4a7a-a9f6-112c5b0415b4",
+            "name": "Delete own group by id",
+            "url": "localhost:4000/api/group/6636513f12ab6632d30e93f8",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2024-05-02T17:26:17.559Z",
+            "modified": "2024-05-05T15:06:53.642Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "0de26369-e34d-43c7-a759-cd3b551806f0",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "bf295b87-51fe-4a7a-a9f6-112c5b0415b4",
+            "name": "Get Group By Id",
+            "url": "localhost:4000/api/group/6634a8c7cfb0310fa3525830",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-05-05T16:59:51.287Z",
+            "modified": "2024-05-05T17:00:18.944Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "6e112f59-5735-4cbc-93be-6c0f0382109b",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "ad5152b8-28b8-4be5-a736-704859eb7c99",
+            "name": "create student",
+            "url": "localhost:4000/api/student",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2024-05-06T10:14:22.419Z",
+            "modified": "2024-05-10T17:14:20.285Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Marta\",\n  \"surname\": \"Fernandez\",\n  \"age\": \"12\",\n  \"group\": \"66364d6912ab6632d30e93da\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "72ff6f05-c9e1-41f9-aec9-d51120b96986",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "ad5152b8-28b8-4be5-a736-704859eb7c99",
+            "name": "get group students",
+            "url": "localhost:4000/api/student/6636518912ab6632d30e9400",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2024-05-06T11:10:18.169Z",
+            "modified": "2024-05-06T11:10:46.224Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "cc86ed7a-5aec-47c9-b5ae-f890db7332ba",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "ad5152b8-28b8-4be5-a736-704859eb7c99",
+            "name": "get group student",
+            "url": "localhost:4000/api/student/6636518912ab6632d30e9400/6638b860f3cd531a31172ea4",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2024-05-06T14:48:26.623Z",
+            "modified": "2024-05-06T15:06:08.857Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "c6209dbd-d560-46af-beb2-4c2356cfe740",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "ad5152b8-28b8-4be5-a736-704859eb7c99",
+            "name": "edit student",
+            "url": "localhost:4000/api/student/6636518912ab6632d30e9400/6638b860f3cd531a31172ea4",
+            "method": "PUT",
+            "sortNum": 140000,
+            "created": "2024-05-06T15:25:50.256Z",
+            "modified": "2024-05-06T15:26:33.465Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"julia\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "1911be68-5496-4e55-a390-5327a301cd63",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "ad5152b8-28b8-4be5-a736-704859eb7c99",
+            "name": "archive student",
+            "url": "localhost:4000/api/student/6636518912ab6632d30e9400/6638b860f3cd531a31172ea4/archive",
+            "method": "PUT",
+            "sortNum": 150000,
+            "created": "2024-05-07T09:22:39.065Z",
+            "modified": "2024-05-07T09:23:55.110Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "d0c14818-8b73-48e0-8314-3caa7d0aa3d9",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "ad5152b8-28b8-4be5-a736-704859eb7c99",
+            "name": "delete student",
+            "url": "localhost:4000/api/student/6636518912ab6632d30e9400/6639f48bb5f59603c2ca96d8",
+            "method": "DELETE",
+            "sortNum": 160000,
+            "created": "2024-05-07T09:29:16.475Z",
+            "modified": "2024-05-07T09:30:34.376Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "d519657d-ad18-4e9a-b0fe-e0a11d8dea25",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "b310ee93-11b5-46b4-8476-da361733b3a5",
+            "name": "create task",
+            "url": "localhost:4000/api/task/6636518912ab6632d30e9400",
+            "method": "POST",
+            "sortNum": 170000,
+            "created": "2024-05-07T14:31:39.730Z",
+            "modified": "2024-05-11T15:01:45.028Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"1st term exam\",\n  \"weight\": 25\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "aef21c35-f1fc-4b77-849c-a3aba7c21a83",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "b310ee93-11b5-46b4-8476-da361733b3a5",
+            "name": "get group tasks",
+            "url": "localhost:4000/api/task/6636518912ab6632d30e9400",
+            "method": "GET",
+            "sortNum": 180000,
+            "created": "2024-05-07T14:40:08.040Z",
+            "modified": "2024-05-07T14:40:30.200Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "5e235413-73c0-45b9-b3e4-b70e74bdb4ff",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "b310ee93-11b5-46b4-8476-da361733b3a5",
+            "name": "get group task by id",
+            "url": "localhost:4000/api/task/6636518912ab6632d30e9400/663a3eae930bc87e53c48e34",
+            "method": "GET",
+            "sortNum": 190000,
+            "created": "2024-05-07T15:00:08.654Z",
+            "modified": "2024-05-07T15:00:35.835Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "e165444d-a23f-42fd-95f9-013ac00b9bdc",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "b310ee93-11b5-46b4-8476-da361733b3a5",
+            "name": "edit task",
+            "url": "localhost:4000/api/task/6636518912ab6632d30e9400/663a3eae930bc87e53c48e34",
+            "method": "PUT",
+            "sortNum": 200000,
+            "created": "2024-05-07T17:21:10.681Z",
+            "modified": "2024-05-07T17:21:54.682Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"weight\": 0.5\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "6c421217-f8f6-4737-8fd4-cecd650769e9",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "b310ee93-11b5-46b4-8476-da361733b3a5",
+            "name": "delete task",
+            "url": "localhost:4000/api/task/6636518912ab6632d30e9400/663a644a35c84c20667bbee4",
+            "method": "DELETE",
+            "sortNum": 210000,
+            "created": "2024-05-07T17:26:50.834Z",
+            "modified": "2024-05-07T17:27:18.218Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "9f4b4c3f-916e-443b-a83d-fe2140274caf",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "12dca605-cbed-4686-89ac-fb7c7b45aae7",
+            "name": "create mark",
+            "url": "localhost:4000/api/mark/6636518912ab6632d30e9400/663f88590e1f49b7b07fffbf/6638b860f3cd531a31172ea4",
+            "method": "POST",
+            "sortNum": 230000,
+            "created": "2024-05-07T17:47:18.998Z",
+            "modified": "2024-05-12T09:10:00.087Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"value\": 8.7\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "bbe3e9d1-c203-4459-a980-06e19b928495",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "12dca605-cbed-4686-89ac-fb7c7b45aae7",
+            "name": "get all group marks",
+            "url": "localhost:4000/api/mark/6636518912ab6632d30e9400",
+            "method": "GET",
+            "sortNum": 240000,
+            "created": "2024-05-07T18:08:03.745Z",
+            "modified": "2024-05-07T18:08:23.824Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "76614ce2-2797-4230-84ad-318813629c4b",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "12dca605-cbed-4686-89ac-fb7c7b45aae7",
+            "name": "edit student mark",
+            "url": "localhost:4000/api/mark/6636518912ab6632d30e9400/663a6ce4cde4dc0be0af3689",
+            "method": "PUT",
+            "sortNum": 250000,
+            "created": "2024-05-08T09:57:29.655Z",
+            "modified": "2024-05-08T10:01:46.886Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"value\": 9\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "53da5934-684e-4e27-9153-3c0ff1ae2246",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "12dca605-cbed-4686-89ac-fb7c7b45aae7",
+            "name": "delete student mark",
+            "url": "localhost:4000/api/mark/6636518912ab6632d30e9400/663a6ce4cde4dc0be0af3689",
+            "method": "DELETE",
+            "sortNum": 260000,
+            "created": "2024-05-08T10:30:36.605Z",
+            "modified": "2024-05-08T10:32:19.326Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        },
+        {
+            "_id": "bfe65da8-9e04-4a23-ac29-9a6332609e54",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "5d1152ab-8835-403b-a1bc-1a3f60c8646e",
+            "name": "create attendance",
+            "url": "",
+            "method": "GET",
+            "sortNum": 270000,
+            "created": "2024-05-09T09:56:55.333Z",
+            "modified": "2024-05-09T09:56:55.333Z",
+            "headers": []
+        },
+        {
+            "_id": "2b92bbb9-cfeb-4c0c-b379-9c158d9d23c5",
+            "colId": "b2c6287b-f6cc-45e4-a9d1-84dd7c98f07f",
+            "containerId": "ad5152b8-28b8-4be5-a736-704859eb7c99",
+            "name": "get group details and student overview",
+            "url": "localhost:4000/api/student/overview/6636518912ab6632d30e9400",
+            "method": "GET",
+            "sortNum": 280000,
+            "created": "2024-05-09T14:14:18.624Z",
+            "modified": "2024-05-12T09:10:42.076Z",
+            "headers": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjMyMjE2ZDFiMTg3OTU1MWJhNDlkZmYiLCJuYW1lIjoiTWFyaW5lIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTQ1NjEzOTJ9.mQNs4tg4TJz8VHBQ-nU669iqYtwBN4kUPh2F8rQpdw4"
+            }
+        }
+    ],
+    "ref": "KP1sCYcw9th9B68ThZ_XRbQsWfk8DsY73f3zndZ2ev7NODg02zaVHn0zOJKfYw5qtgsahMLaDcoeRydkyySrfg"
+}
