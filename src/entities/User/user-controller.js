@@ -2,8 +2,8 @@ import { changePasswordService, suspendUserService, updateUserProfileService } f
 
 export const updateUserProfile = async (req, res, next) => {
     try {
-        const {_id, name, role, ...other} = await updateUserProfileService(req);
-        const updatedUser = {id: _id, name, role};
+        const {_id, name} = await updateUserProfileService(req); //TODO move them here this is not working
+        const updatedUser = {id: _id, name};
         res.status(200).json(
             {
                 success: true,

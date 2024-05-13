@@ -23,7 +23,7 @@ export const updateUserProfileService = async (req, res) => {
             if (!isValidEmail(email)) {
                 throw new InvalidInputError(400, "Invalid email");
             }
-            updatedFields.email = email;
+            //updatedFields.email = email; //TODO reimplement
         }
         const updatedUser = await updateUserByIdRepository(userId, updatedFields);
         return updatedUser;
