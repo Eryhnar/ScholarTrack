@@ -11,7 +11,7 @@ import { createAttendanceRepository } from "./attendance-repository.js";
 //     }
 // }
 
-export const createAttendanceService = async (date, present, groupId, studentId) => {
+export const createAttendanceService = async (date, present, groupId) => {
     const session = await startSession();
     session.startTransaction();
     try {
