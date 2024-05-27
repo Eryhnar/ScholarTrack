@@ -34,6 +34,8 @@ import { createAttendanceRepository } from "./attendance-repository.js";
 //         session.endSession();
 //     }
 // }
+
+// TODO add check for active in the repository
 export const createAttendanceService = async (date, groupId) => {
     const session = await startSession();
     session.startTransaction();
@@ -58,12 +60,47 @@ export const createAttendanceService = async (date, groupId) => {
     }
 }
 
-export const getGroupAttendanceService = async (date, groupId) => {
+export const getGroupDateAttendanceService = async (date, groupId) => {
     try {
         if (!date || !groupId) {
             throw new Error("All fields are required");
         }
-        return await getGroupAttendanceRepository(date, groupId);
+        return await getGroupDateAttendanceRepository(date, groupId);
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const editStudentAttendanceService = async (date, groupId, studentAttendances) => {
+    const session = await startSession();
+    session.startTransaction();
+    try {
+        if (!date || !groupId || !studentAttendances) {
+            throw new Error("All fields are required");
+        }
+
+        const updatedAttendances = [];
+        for (const { studentId, attendanceStatus } of studentAttendances) {
+            const updatedAttendance = await editStudentAttendanceRepository(date, groupId, studentId, attendanceStatus, session);
+            updatedAttendances.push(updatedAttendance);
+        }
+
+        await session.commitTransaction();
+        return updatedAttendances;
+    } catch (error) {
+        await session.abortTransaction();
+        throw error;
+    } finally {
+        session.endSession();
+    }
+}
+
+export const deleteGroupDateAttendanceService = async (date, groupId) => {
+    try {
+        if (!date || !groupId) {
+            throw new Error("All fields are required");
+        }
+        return await deleteGroupDateAttendanceRepository(date, groupId);
     } catch (error) {
         throw error;
     }
